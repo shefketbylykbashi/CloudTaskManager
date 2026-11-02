@@ -1,0 +1,22 @@
+## .NET and Visual Studio build/user output
+bin/
+obj/
+.vs/
+*.user
+*.suo
+TestResults/
+coverage/
+coverage.*
+
+## Local configuration and secrets
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+secrets.json
+
+## Tool/editor output
+.idea/
+.vscode/
+*.nupkg
+*.snupkg

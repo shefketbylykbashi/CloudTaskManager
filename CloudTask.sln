@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudTask", "CloudTask\CloudTask.csproj", "{5EEA937E-FE62-4A9D-909C-B4058F6BEE7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CloudTask", "CloudTask", "{D02E0EAA-ABF3-41F3-BB88-6D170776D069}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DD984E85-44A1-456E-A21F-9C6D59F7B655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudTask.IntegrationTests", "CloudTask\tests\CloudTask.IntegrationTests\CloudTask.IntegrationTests.csproj", "{4FB2180F-C94D-44E4-A62A-199872A4278C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EEA937E-FE62-4A9D-909C-B4058F6BEE7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EEA937E-FE62-4A9D-909C-B4058F6BEE7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EEA937E-FE62-4A9D-909C-B4058F6BEE7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EEA937E-FE62-4A9D-909C-B4058F6BEE7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FB2180F-C94D-44E4-A62A-199872A4278C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB2180F-C94D-44E4-A62A-199872A4278C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB2180F-C94D-44E4-A62A-199872A4278C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB2180F-C94D-44E4-A62A-199872A4278C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70DE9846-7847-49D2-B477-4D3BEF02C117}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5EEA937E-FE62-4A9D-909C-B4058F6BEE7C} = {D02E0EAA-ABF3-41F3-BB88-6D170776D069}
+		{DD984E85-44A1-456E-A21F-9C6D59F7B655} = {D02E0EAA-ABF3-41F3-BB88-6D170776D069}
+		{4FB2180F-C94D-44E4-A62A-199872A4278C} = {DD984E85-44A1-456E-A21F-9C6D59F7B655}
+	EndGlobalSection
+EndGlobal

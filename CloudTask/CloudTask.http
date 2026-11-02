@@ -1,0 +1,57 @@
+@CloudTask_HostAddress = https://localhost:7011
+@TaskId = 1
+
+### Create a task
+POST {{CloudTask_HostAddress}}/api/tasks
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Complete Azure SQL Project",
+  "description": "Implement and test CRUD endpoints",
+  "status": "Pending",
+  "priority": "High",
+  "dueDate": "2026-11-15T12:00:00Z"
+}
+
+### List tasks with default paging and sorting
+GET {{CloudTask_HostAddress}}/api/tasks
+Accept: application/json
+
+### Filter, search, sort, and paginate tasks
+GET {{CloudTask_HostAddress}}/api/tasks?status=Pending&priority=High&search=azure&sortBy=dueDate&sortDirection=asc&page=1&pageSize=10
+Accept: application/json
+
+### Get dashboard statistics
+GET {{CloudTask_HostAddress}}/api/tasks/stats
+Accept: application/json
+
+### Get one task (set TaskId to an existing ID)
+GET {{CloudTask_HostAddress}}/api/tasks/{{TaskId}}
+Accept: application/json
+
+### Replace a task's editable fields
+PUT {{CloudTask_HostAddress}}/api/tasks/{{TaskId}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Complete Azure SQL Project",
+  "description": "CRUD and documentation are ready for review",
+  "status": "InProgress",
+  "priority": "High",
+  "dueDate": "2026-11-16T12:00:00Z"
+}
+
+### Change only a task's status
+PATCH {{CloudTask_HostAddress}}/api/tasks/{{TaskId}}/status
+Accept: application/json
+Content-Type: application/json
+
+{
+  "status": "Completed"
+}
+
+### Delete a task permanently
+DELETE {{CloudTask_HostAddress}}/api/tasks/{{TaskId}}
+Accept: application/json
