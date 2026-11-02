@@ -396,6 +396,65 @@ const page = await response.json();
 
 For `POST`, `PUT`, and `PATCH`, send `Content-Type: application/json` and serialize one of the documented bodies. For `DELETE`, do not attempt to parse JSON after a 204 response. A production frontend should use its configured API base URL rather than hard-coding localhost.
 
+## React frontend
+
+The repository includes a complete Vite + React application in `frontend/`. It uses JavaScript/JSX, React Router, Tailwind CSS, Lucide icons, Recharts, React Hook Form, Axios, and Sonner. All task data comes from this API; the browser never connects to Azure SQL directly.
+
+The frontend provides:
+
+- A responsive dashboard with live KPI cards, status and priority charts, completion progress, recent tasks, and upcoming or overdue deadlines.
+- Server-backed task search, filters, sorting, pagination, and adjustable page sizes.
+- Create, edit, inline status update, and confirmed delete workflows.
+- Loading skeletons, empty states, API error recovery, validation feedback, and toast notifications.
+- A collapsible desktop sidebar, mobile navigation drawer, keyboard-accessible dialogs, and persisted light/dark themes.
+
+### Install and configure
+
+Use a current Node.js LTS release. From the API project directory:
+
+```powershell
+cd .\frontend
+npm install
+Copy-Item .env.example .env
+```
+
+The example environment file contains:
+
+```dotenv
+VITE_API_BASE_URL=https://localhost:7011
+```
+
+Keep environment-specific API URLs in local environment files or deployment configuration. Never put a database connection string or SQL credentials in a Vite variable because every `VITE_` value is available to browser code.
+
+### Run the full application locally
+
+Start the API in one terminal from the `CloudTask` project directory:
+
+```powershell
+dotnet run --launch-profile https
+```
+
+Start the frontend in a second terminal:
+
+```powershell
+cd .\frontend
+npm run dev
+```
+
+Open `http://localhost:5173`. The Development CORS allowlist already includes this exact origin. The API uses `https://localhost:7011`, so the ASP.NET Core HTTPS development certificate must be valid and trusted in the browser. API startup also requires a working `ConnectionStrings:DefaultConnection` supplied through secure configuration as described above.
+
+### Frontend checks
+
+From `frontend/`:
+
+```powershell
+npm test
+npm run build
+npm run preview
+```
+
+`npm test` runs focused Vitest/Testing Library coverage for date conversion, overdue logic, API Problem Details normalization, form validation, and create-request payloads. `npm run build` emits the production bundle to `frontend/dist/`.
+
 ## Tests
 
 The automated tests do not require live Azure credentials. From the project directory, run:

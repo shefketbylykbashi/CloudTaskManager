@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-brand-50: #f1f3ff;
+  --color-brand-100: #e2e6ff;
+  --color-brand-200: #cbd1ff;
+  --color-brand-300: #a5adff;
+  --color-brand-400: #7b83ff;
+  --color-brand-500: #5d63f2;
+  --color-brand-600: #4c4bdc;
+  --color-brand-700: #403cba;
+  --color-brand-800: #363496;
+  --color-brand-900: #303176;
+  --animate-fade-in: fade-in 180ms ease-out;
+  --animate-slide-up: slide-up 220ms ease-out;
+  --animate-slide-in: slide-in 220ms ease-out;
+  --animate-pulse-soft: pulse-soft 1.8s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-in {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+}
+
+:root {
+  color-scheme: light;
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --app-bg: #f7f8fc;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-muted: #f7f8fc;
+  --border: #e7e9f2;
+  --border-strong: #d9dce8;
+  --text: #171926;
+  --text-muted: #686c7d;
+  --text-subtle: #9195a5;
+  --shadow-card: 0 1px 2px rgba(22, 24, 38, 0.035), 0 10px 32px rgba(43, 47, 73, 0.045);
+  --shadow-popover: 0 18px 60px rgba(26, 30, 53, 0.16);
+}
+
+.dark {
+  color-scheme: dark;
+  --app-bg: #0c0e16;
+  --surface: #131620;
+  --surface-elevated: #191c28;
+  --surface-muted: #10131c;
+  --border: #252937;
+  --border-strong: #323748;
+  --text: #f4f5fa;
+  --text-muted: #a6aabc;
+  --text-subtle: #74798d;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.18), 0 14px 38px rgba(0, 0, 0, 0.16);
+  --shadow-popover: 0 20px 70px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--app-bg);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--app-bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+::selection {
+  color: #fff;
+  background: #5d63f2;
+}
+
+:focus-visible {
+  outline: 2px solid #6d72f5;
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-subtle) 55%, transparent);
+  background-clip: padding-box;
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-2xl border;
+    border-color: var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+  }
+
+  .input-control {
+    @apply h-11 w-full rounded-xl border px-3.5 text-sm transition duration-150 placeholder:text-slate-400 disabled:cursor-not-allowed disabled:opacity-60 dark:placeholder:text-slate-600;
+    border-color: var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  .input-control:hover:not(:disabled) {
+    border-color: color-mix(in srgb, #5d63f2 35%, var(--border-strong));
+  }
+
+  .input-control:focus {
+    border-color: #686ef5;
+    outline: 0;
+    box-shadow: 0 0 0 3px color-mix(in srgb, #686ef5 14%, transparent);
+  }
+
+  .field-label {
+    @apply mb-2 block text-sm font-semibold;
+    color: var(--text);
+  }
+
+  .field-hint {
+    @apply mt-1.5 text-xs;
+    color: var(--text-subtle);
+  }
+
+  .field-error {
+    @apply mt-1.5 flex items-center gap-1.5 text-xs font-medium text-rose-600 dark:text-rose-400;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.16em];
+    color: var(--text-subtle);
+  }
+
+  .chart-tooltip {
+    @apply rounded-xl border px-3 py-2 text-xs shadow-xl;
+    border-color: var(--border);
+    background: var(--surface-elevated);
+    color: var(--text);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
